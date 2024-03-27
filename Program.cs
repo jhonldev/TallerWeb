@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TallerWeb.Src.Models;
 using TallerWeb.Src.Data;
-using TallerWeb.Src.Repositories;
 using TallerWeb.Src.Repositories.Implements;
 using TallerWeb.Src.Repositories.Interfaces;
 
@@ -16,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source=tallerWeb.db"));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
