@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\TallerWeb.csproj": {}
+    "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\TallerWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\TallerWeb.csproj": {
+    "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\TallerWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\TallerWeb.csproj",
+        "projectUniqueName": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\TallerWeb.csproj",
         "projectName": "TallerWeb",
-        "projectPath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\TallerWeb.csproj",
+        "projectPath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\TallerWeb.csproj",
         "packagesPath": "C:\\Users\\jhonl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\obj\\",
+        "outputPath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jhonl\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -32,11 +32,16 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -92,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

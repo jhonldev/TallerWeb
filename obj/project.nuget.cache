@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5sEes4uIoMAeKeOXQAv2BbENKTzO59KTsH7qraTDD+/ncltQA04m2RqOJj+nRn90/SZVaG63DO0UbygpUKq2DA==",
+  "dgSpecHash": "WqU9z7nHXUR0dLL1Cn3vnkUd6sFh3NztBqWfaLeyFXRp3XkC7XGQbrbTkP0NfKajE5LJDno7Vuk1rj1hkqLv7A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Clases\\Introducción al desarrollo web móvil\\TallerWeb\\TallerWeb.csproj",
+  "projectFilePath": "C:\\Users\\jhonl\\OneDrive\\Escritorio\\Web Movil\\TallerWeb\\TallerWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jhonl\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\jhonl\\.nuget\\packages\\bogus\\35.5.0\\bogus.35.5.0.nupkg.sha512",

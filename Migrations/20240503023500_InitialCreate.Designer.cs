@@ -10,7 +10,7 @@ using TallerWeb.Src.Data;
 namespace TallerWeb.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240325145559_InitialCreate")]
+    [Migration("20240503023500_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,8 +36,8 @@ namespace TallerWeb.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Precio")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
