@@ -1,4 +1,5 @@
 using TallerWeb.Src.Models;
+using TallerWeb.Src.DTOs.Product;
 
 namespace TallerWeb.Src.Repositories.Interfaces
 {
@@ -6,7 +7,9 @@ namespace TallerWeb.Src.Repositories.Interfaces
     {
         Task<IEnumerable<Product>> GetProducts();
 
-        Task<Product> CreateProduct(Product product);
+        Task<IEnumerable<Product>> GetProductsAvailable();
+
+        Task<bool> CreateProduct(Product product);
 
         Task<bool> ExistingProduct(string name, string type);
 

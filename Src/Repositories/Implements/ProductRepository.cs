@@ -2,6 +2,7 @@ using TallerWeb.Src.Models;
 using TallerWeb.Src.Data;
 using TallerWeb.Src.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using TallerWeb.Src.DTOs.Product;
 
 namespace TallerWeb.Src.Repositories.Implements
 {
@@ -20,18 +21,23 @@ namespace TallerWeb.Src.Repositories.Implements
             return products;
         }
 
-        public async Task<Product> CreateProduct(Product product)
+        public async Task<IEnumerable<Product>> GetProductsAvailable()
+        {
+            var products = await _context.Products.Where(x => x.CantidadEnStock > 0).ToListAsync();
+            return products;
+        }
+
+        public async Task<bool> CreateProduct(Product product)
         {
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
-            return product;
+            return true;
         }
 
         public async Task<bool> ExistingProduct(string name, string type)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Nombre == name && x.Tipo == type);
-            if(product != null)
-            {
+            if(product != null){
                 return true;
             }   
             return false;
@@ -44,23 +50,21 @@ namespace TallerWeb.Src.Repositories.Implements
                 return false;
             }
 
-            existingProduct.Nombre = productUpdateDto.Nombre != string.Empty ? productUpdateDto.Nombre : existingProduct.Nombre;
-            existingProduct.Tipo = productUpdateDto.Tipo != string.Empty ? productUpdateDto.Tipo : existingProduct.Tipo;
-            existingProduct.Precio = productUpdateDto.Precio != 0 ? productUpdateDto.Precio : existingProduct.Precio;
-            existingProduct.CantidadEnStock = productUpdateDto.CantidadEnStock != 0 ? productUpdateDto.CantidadEnStock : existingProduct.CantidadEnStock;
-            existingProduct.Image = productUpdateDto.Image != string.Empty ? productUpdateDto.Image : existingProduct.Image;
+            existingProduct.Nombre = productUpdateDto.Nombre ?? existingProduct.Nombre;
+            existingProduct.Tipo = productUpdateDto.Tipo ?? existingProduct.Tipo;
+            existingProduct.Precio = productUpdateDto.Precio ?? existingProduct.Precio;
+            existingProduct.CantidadEnStock = productUpdateDto.CantidadEnStock ?? existingProduct.CantidadEnStock;
+            existingProduct.Image = productUpdateDto.Image ?? existingProduct.Image;
 
             _context.Entry(existingProduct).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-
             return true;
         }
 
         public async Task<bool> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            if(product == null)
-            {
+            if(product == null){
                 return false;
             }
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using TallerWeb.Src.Repositories.Interfaces; 
-using TallerWeb.Src.Models;
+using TallerWeb.Src.Service.Interfaces;
+using TallerWeb.Src.DTOs.Product;
 using Microsoft.AspNetCore.Authorization;
 
 namespace TallerWeb.Src.Controllers
@@ -9,9 +9,9 @@ namespace TallerWeb.Src.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _service;
+        private readonly IProductService _service;
 
-        public ProductController(IProductRepository service)
+        public ProductController(IProductService service)
         {
             _service = service;
         }
@@ -20,64 +20,33 @@ namespace TallerWeb.Src.Controllers
         //[Authorize(Roles="Admin")]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await _service.GetProducts();
+            var productsDto = await _service.GetProducts();
+            return Ok(productsDto);
+        }
 
-            var productDtos = products.Select(product => new ProductDto
-            {
-                Nombre = product.Nombre,
-                Tipo = product.Tipo,
-                Precio = product.Precio,
-                CantidadEnStock = product.CantidadEnStock,
-                Image = product.Image
-            }).ToList();
-
-            return Ok(productDtos);
+        [HttpGet("available")]
+        //[Authorize(Roles="Cliente")]
+        public async Task<IActionResult> GetProductsAvailable()
+        {
+            var productDto = await _service.GetProductsAvailable();
+            return Ok(productDto);
         }
 
         [HttpPost("create")]
         //[Authorize(Roles="Admin")]
         public async Task<IActionResult> CreateProduct(ProductDto productDto)
         {   
-            var result = await _service.ExistingProduct(productDto.Nombre, productDto.Tipo);
-            if(result){
+            var result = await _service.CreateProduct(productDto);
+            if(!result){
                 return BadRequest("El producto ya existe");
             }
-            var product = new Product
-            {
-                Nombre = productDto.Nombre,
-                Tipo = productDto.Tipo,
-                Precio = productDto.Precio,
-                CantidadEnStock = productDto.CantidadEnStock,
-                Image = productDto.Image
-            };
-
-            var newProduct = await _service.CreateProduct(product);
-
-            var newProductDto = new ProductDto
-            {
-                Nombre = newProduct.Nombre,
-                Tipo = newProduct.Tipo,
-                Precio = newProduct.Precio,
-                CantidadEnStock = newProduct.CantidadEnStock,
-                Image = newProduct.Image
-            };
-
             return Ok("El producto se creó correctamente");
         }
 
         [HttpPut("{id}")]
         //[Authorize(Roles="Admin")]
-        public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto productDto)
+        public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto productUpdateDto)
         {
-            var productUpdateDto = new ProductUpdateDto
-            {
-                Nombre = productDto.Nombre,
-                Tipo = productDto.Tipo,
-                Precio = productDto.Precio,
-                CantidadEnStock = productDto.CantidadEnStock,
-                Image = productDto.Image
-            };
-
             var result = await _service.UpdateProduct(id, productUpdateDto);
             if(!result){
                 return NotFound("El producto no existe en el sistema.");

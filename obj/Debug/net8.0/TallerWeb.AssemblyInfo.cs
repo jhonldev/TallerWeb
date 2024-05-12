@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TallerWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fd24a27c76badbf8b6a104cb42da1a7cc37ed6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+586ac39f6a627317b868fd2eda0990c6eb4c02fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("TallerWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TallerWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

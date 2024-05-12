@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TallerWeb.Migrations
+namespace TallerWeb.Src.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
