@@ -1,6 +1,9 @@
 using TallerWeb.Src.DTOs.Product;
+using TallerWeb.Src.DTOs.Receipt;
+using TallerWeb.Src.Models;
 using TallerWeb.Src.Service.Interfaces;
 using TallerWeb.Src.Repositories.Interfaces;
+
 
 namespace TallerWeb.Src.Service.Implements
 {
@@ -9,9 +12,9 @@ namespace TallerWeb.Src.Service.Implements
     {
         private readonly IProductRepository _productRepository;
 
-        private readonly MapperService _mapperService;
+        private readonly IMapperService _mapperService;
 
-        public ProductService(IProductRepository productRepository, MapperService mapperService)
+        public ProductService(IProductRepository productRepository, IMapperService mapperService)
         {
             _productRepository = productRepository;
             _mapperService =  mapperService;
@@ -41,7 +44,7 @@ namespace TallerWeb.Src.Service.Implements
 
         public async Task<bool> CreateProduct(ProductDto productDto)
         {
-            if(await _productRepository.ExistingProduct(productDto.Nombre, productDto.Tipo)){
+            if(productDto.Name == null || productDto.Type == null || await _productRepository.ExistingProduct(productDto.Name, productDto.Type)){
                 return false;
             }
             var product = _mapperService.ProductDtoToProduct(productDto);
@@ -60,6 +63,40 @@ namespace TallerWeb.Src.Service.Implements
             var deletedProduct = await _productRepository.DeleteProduct(id);
             return deletedProduct;
         }
-    }
 
+        public async Task<ReceiptDto?> BuyProduct(ProductBuyDto productBuyDto)
+        {
+            var result = await _productRepository.BuyProduct(productBuyDto);
+
+            if(result == -1 || productBuyDto.Name == null || productBuyDto.Type == null){
+                return null;
+            }
+
+            int price = _productRepository.PriceProduct(productBuyDto.Name, productBuyDto.Type).Result;
+
+            Receipt receipt = new Receipt{
+                    IdProduct = result,
+                    NameProduct = productBuyDto.Name,
+                    TypeProduct = productBuyDto.Type,
+                    UnitPriceProduct = price,
+                    QuantityPruchased = productBuyDto.QuantityStock,
+                    PriceFinal = productBuyDto.QuantityStock * price,
+                    Date = DateTime.Today
+                };
+                var receiptGenerate = await _productRepository.GenerateReceipt(receipt);
+                var mappedReceipt = _mapperService.ReceiptToReceiptDto(receiptGenerate);
+                return mappedReceipt;
+        }
+
+        public async Task<IEnumerable<ReceiptDto>> GetReceipts()
+        {
+            var receipts = await _productRepository.GetReceipts();
+            var mappedReceipts = new List<ReceiptDto>();
+            for (int i = 0; i < receipts.Count(); i++){
+                var receiptDto = _mapperService.ReceiptToReceiptDto(receipts.ElementAt(i));
+                mappedReceipts.Add(receiptDto);
+            }
+            return mappedReceipts;
+        }
+    }
 }

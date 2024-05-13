@@ -1,6 +1,7 @@
 using AutoMapper;
 using TallerWeb.Src.Models;
 using TallerWeb.Src.DTOs.Product;
+using TallerWeb.Src.DTOs.Receipt;
 using TallerWeb.Src.Service.Interfaces;
 
 namespace TallerWeb.Src.Service.Implements
@@ -24,6 +25,18 @@ namespace TallerWeb.Src.Service.Implements
         {
             var mappedProductDto = _mapper.Map<ProductDto>(product);
             return mappedProductDto;
+        }
+
+        public ReceiptDto ReceiptToReceiptDto(Receipt receipt)
+        {
+            var mappedReceiptDto = _mapper.Map<ReceiptDto>(receipt);
+            return mappedReceiptDto;
+        }
+
+        public Receipt ReceiptDtoToReceipt(ReceiptDto receiptDto)
+        {
+            var mappedReceipt = _mapper.Map<Receipt>(receiptDto);
+            return mappedReceipt;
         }
     }
 }

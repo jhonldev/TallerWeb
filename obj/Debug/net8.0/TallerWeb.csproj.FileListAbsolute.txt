@@ -158,3 +158,5 @@ C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\o
 C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\obj\Debug\net8.0\TallerWeb.pdb
 C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\obj\Debug\net8.0\TallerWeb.genruntimeconfig.cache
 C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\obj\Debug\net8.0\ref\TallerWeb.dll
+C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\jhonl\Desktop\Clases\Introducción al desarrollo web móvil\TallerWeb\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

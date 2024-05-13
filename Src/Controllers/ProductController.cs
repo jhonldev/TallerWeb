@@ -64,5 +64,24 @@ namespace TallerWeb.Src.Controllers
             }
             return Ok("El producto se elimino correctamente");
         }
+
+        [HttpPost("buy")]
+        //[Authorize(Roles="Cliente")]
+        public async Task<IActionResult> BuyProduct(ProductBuyDto productBuyDto)
+        {
+            var result = await _service.BuyProduct(productBuyDto);
+            if(result == null){
+                return BadRequest("No hay suficiente stock del producto.");
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("receipt")]
+        //[Authorize(Roles="Admin")]
+        public async Task<IActionResult> GetReceipt()
+        {
+            var receiptsDto = await _service.GetReceipts();
+            return Ok(receiptsDto);
+        }
     }
 }

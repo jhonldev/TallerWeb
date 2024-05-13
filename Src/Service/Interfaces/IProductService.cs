@@ -1,4 +1,5 @@
 using TallerWeb.Src.DTOs.Product;
+using TallerWeb.Src.DTOs.Receipt;
 
 namespace TallerWeb.Src.Service.Interfaces{
     public interface IProductService
@@ -12,5 +13,9 @@ namespace TallerWeb.Src.Service.Interfaces{
         Task<bool> UpdateProduct(int id, ProductUpdateDto productDto);
 
         Task<bool> DeleteProduct(int id);
+
+        Task<ReceiptDto?> BuyProduct(ProductBuyDto productBuyDto);
+
+        Task<IEnumerable<ReceiptDto>> GetReceipts();
     }
 }

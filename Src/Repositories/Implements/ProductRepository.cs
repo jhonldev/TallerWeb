@@ -23,7 +23,7 @@ namespace TallerWeb.Src.Repositories.Implements
 
         public async Task<IEnumerable<Product>> GetProductsAvailable()
         {
-            var products = await _context.Products.Where(x => x.CantidadEnStock > 0).ToListAsync();
+            var products = await _context.Products.Where(x => x.QuantityStock > 0).ToListAsync();
             return products;
         }
 
@@ -36,7 +36,7 @@ namespace TallerWeb.Src.Repositories.Implements
 
         public async Task<bool> ExistingProduct(string name, string type)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(x => x.Nombre == name && x.Tipo == type);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == name && x.Type == type);
             if(product != null){
                 return true;
             }   
@@ -50,10 +50,10 @@ namespace TallerWeb.Src.Repositories.Implements
                 return false;
             }
 
-            existingProduct.Nombre = productUpdateDto.Nombre ?? existingProduct.Nombre;
-            existingProduct.Tipo = productUpdateDto.Tipo ?? existingProduct.Tipo;
-            existingProduct.Precio = productUpdateDto.Precio ?? existingProduct.Precio;
-            existingProduct.CantidadEnStock = productUpdateDto.CantidadEnStock ?? existingProduct.CantidadEnStock;
+            existingProduct.Name = productUpdateDto.Name ?? existingProduct.Name;
+            existingProduct.Type = productUpdateDto.Type ?? existingProduct.Type;
+            existingProduct.Price = productUpdateDto.Price ?? existingProduct.Price;
+            existingProduct.QuantityStock = productUpdateDto.QuantityStock ?? existingProduct.QuantityStock;
             existingProduct.Image = productUpdateDto.Image ?? existingProduct.Image;
 
             _context.Entry(existingProduct).State = EntityState.Modified;
@@ -71,6 +71,50 @@ namespace TallerWeb.Src.Repositories.Implements
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<int> BuyProduct(ProductBuyDto productBuyDto)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == productBuyDto.Name && x.Type == productBuyDto.Type);
+            if(product == null || product.QuantityStock < productBuyDto.QuantityStock){
+                return -1;
+            }
+
+            product.QuantityStock -= productBuyDto.QuantityStock;
+            _context.Entry(product).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return product.Id;
+        }
+
+        public async Task<int> GetStock(string name, string type)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == name && x.Type == type);
+            if(product == null){
+                return 0;
+            }
+            return product.QuantityStock;
+        }
+
+        public async Task<Receipt> GenerateReceipt(Receipt receipt)
+        {
+            await _context.Receipts.AddAsync(receipt);
+            await _context.SaveChangesAsync();
+            return receipt;
+        }
+
+        public async Task<int> PriceProduct(string name, string type)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == name && x.Type == type);
+            if(product == null){
+                return 0;
+            }
+            return product.Price;
+        }
+
+        public async Task<IEnumerable<Receipt>> GetReceipts()
+        {
+            var receipts = await _context.Receipts.ToListAsync();
+            return receipts;
         }
     }
 }

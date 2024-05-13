@@ -16,5 +16,15 @@ namespace TallerWeb.Src.Repositories.Interfaces
         Task<bool> UpdateProduct(int id, ProductUpdateDto productDto);
 
         Task<bool> DeleteProduct(int id);
+
+        Task<int> BuyProduct(ProductBuyDto productBuyDto);
+
+        Task<int> GetStock(string name, string type);
+
+        Task<Receipt> GenerateReceipt(Receipt receipt);
+
+        Task<int> PriceProduct(string name, string type);
+
+        Task<IEnumerable<Receipt>> GetReceipts();
     }
 }
