@@ -12,6 +12,7 @@ namespace TallerWeb.Src.Data
         public DbSet<Product> Products { get; set;} = null!;
 
         public DbSet<Receipt> Receipts { get; set;} = null!;
+        public DbSet<Gender> Gender { get; set; } = null!;
 
         public DataContext(DbContextOptions options) : base(options)
         {

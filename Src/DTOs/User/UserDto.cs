@@ -10,7 +10,7 @@ namespace TallerWeb.Src.DTOs.User
         public string Rut {get; set;} = string.Empty;
         public string Nombre { get; set; } = string.Empty;
         public DateTime FechaNacimiento {get;set;}
-        public string Genero {get;set;} = string.Empty;
+        public int GenderId {get;set;}
         public string Email { get; set; } = string.Empty;
     }
 }

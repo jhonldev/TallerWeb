@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using TallerWeb.Src.Validators;
 
 namespace TallerWeb.Src.DTOs.User
 {
     public class RegisterUserDto
     {
         [Required(ErrorMessage = "El campo Rut es obligatorio")]
+        [RutValidation(ErrorMessage = "El Rut no es correcto")]
         public string Rut {get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo Nombre es obligatorio")]
@@ -21,12 +23,12 @@ namespace TallerWeb.Src.DTOs.User
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime FechaNacimiento {get; set;}
 
-        [Required(ErrorMessage = "El campo Correo es obligatorio")]
-        [EmailAddress(ErrorMessage = "El correo no tiene formato valido")]
-        public string Correo {get; set;} = string.Empty;
+        [Required(ErrorMessage = "El campo Email es obligatorio")]
+        [EmailAddress(ErrorMessage = "El Email no tiene formato valido")]
+        public string Email {get; set;} = string.Empty;
 
         [Required(ErrorMessage = "El campo Genero es obligatorio")]
-        public string Genero {get; set; } = string.Empty;
+        public int GenderId {get; set; }
 
         [Required(ErrorMessage = "El campo Contraseña es obligatorio")]
         [RegularExpression(@"^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$", ErrorMessage = "La Contraseña debe ser alfanumérica.")]

@@ -11,14 +11,29 @@ using TallerWeb.Src.Data;
 namespace TallerWeb.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240513003129_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240514202029_InitialCreate2")]
+    partial class InitialCreate2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.16");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
+
+            modelBuilder.Entity("TallerWeb.Src.Models.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gender");
+                });
 
             modelBuilder.Entity("TallerWeb.Src.Models.Product", b =>
                 {
@@ -103,6 +118,12 @@ namespace TallerWeb.Src.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GenderId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -114,7 +135,13 @@ namespace TallerWeb.Src.Data.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Rut")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("GenderId");
 
                     b.HasIndex("RoleId");
 
@@ -123,11 +150,19 @@ namespace TallerWeb.Src.Data.Migrations
 
             modelBuilder.Entity("TallerWeb.Src.Models.User", b =>
                 {
+                    b.HasOne("TallerWeb.Src.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TallerWeb.Src.Models.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Gender");
 
                     b.Navigation("Role");
                 });

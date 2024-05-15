@@ -13,6 +13,6 @@ namespace TallerWeb.Src.Models
         public int RoleId { get; set;}
         public Role Role { get; set; } = null!;
         public int GenderId {get; set;}
-        public Gender Gender {get; set;}
+        public required Gender Gender {get; set;}
     }
 }

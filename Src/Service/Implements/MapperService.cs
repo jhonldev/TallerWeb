@@ -3,6 +3,7 @@ using TallerWeb.Src.Models;
 using TallerWeb.Src.DTOs.Product;
 using TallerWeb.Src.DTOs.Receipt;
 using TallerWeb.Src.Service.Interfaces;
+using TallerWeb.Src.DTOs.User;
 
 namespace TallerWeb.Src.Service.Implements
 {
@@ -37,6 +38,18 @@ namespace TallerWeb.Src.Service.Implements
         {
             var mappedReceipt = _mapper.Map<Receipt>(receiptDto);
             return mappedReceipt;
+        }
+        //Usuario
+        public User RegisterUserDtoToUser(RegisterUserDto registerUserDto)
+        {
+            var mappedUser = _mapper.Map<User>(registerUserDto);
+            return mappedUser;
+        }
+
+        public UserDto UserToUserDto(User user)
+        {
+            var mappedUserDto = _mapper.Map<UserDto>(user);
+            return mappedUserDto;
         }
     }
 }
