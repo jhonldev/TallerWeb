@@ -21,10 +21,6 @@ namespace TallerWeb.Src.Repositories.Interfaces
 
         Task<int> GetStock(string name, string type);
 
-        Task<Receipt> GenerateReceipt(Receipt receipt);
-
         Task<int> PriceProduct(string name, string type);
-
-        Task<IEnumerable<Receipt>> GetReceipts();
     }
 }

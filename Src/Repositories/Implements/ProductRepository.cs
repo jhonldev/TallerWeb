@@ -6,15 +6,26 @@ using TallerWeb.Src.DTOs.Product;
 
 namespace TallerWeb.Src.Repositories.Implements
 {
+    /// <summary>
+    /// Represents a repository for managing products.
+    /// </summary>
     public class ProductRepository : IProductRepository
     {
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductRepository"/> class.
+        /// </summary>
+        /// <param name="context">The data context.</param>
         public ProductRepository(DataContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Obtiene todos los productos.
+        /// </summary>
+        /// <returns>Una colección de productos.</returns>
         public async Task<IEnumerable<Product>> GetProducts()
         {
             var products = await _context.Products.ToListAsync();
@@ -60,7 +71,6 @@ namespace TallerWeb.Src.Repositories.Implements
             await _context.SaveChangesAsync();
             return true;
         }
-
         public async Task<bool> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -94,14 +104,6 @@ namespace TallerWeb.Src.Repositories.Implements
             }
             return product.QuantityStock;
         }
-
-        public async Task<Receipt> GenerateReceipt(Receipt receipt)
-        {
-            await _context.Receipts.AddAsync(receipt);
-            await _context.SaveChangesAsync();
-            return receipt;
-        }
-
         public async Task<int> PriceProduct(string name, string type)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == name && x.Type == type);
@@ -111,10 +113,5 @@ namespace TallerWeb.Src.Repositories.Implements
             return product.Price;
         }
 
-        public async Task<IEnumerable<Receipt>> GetReceipts()
-        {
-            var receipts = await _context.Receipts.ToListAsync();
-            return receipts;
-        }
     }
 }

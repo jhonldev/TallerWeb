@@ -15,7 +15,5 @@ namespace TallerWeb.Src.Service.Interfaces{
         Task<bool> DeleteProduct(int id);
 
         Task<ReceiptDto?> BuyProduct(ProductBuyDto productBuyDto);
-
-        Task<IEnumerable<ReceiptDto>> GetReceipts();
     }
 }

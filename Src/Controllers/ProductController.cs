@@ -76,12 +76,5 @@ namespace TallerWeb.Src.Controllers
             return Ok(result);
         }
 
-        [HttpGet("receipt")]
-        //[Authorize(Roles="Admin")]
-        public async Task<IActionResult> GetReceipt()
-        {
-            var receiptsDto = await _service.GetReceipts();
-            return Ok(receiptsDto);
-        }
     }
 }

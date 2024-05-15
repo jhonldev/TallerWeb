@@ -12,12 +12,15 @@ namespace TallerWeb.Src.Service.Implements
     {
         private readonly IProductRepository _productRepository;
 
+        private readonly IReceiptRepository _receiptRepository;
+
         private readonly IMapperService _mapperService;
 
-        public ProductService(IProductRepository productRepository, IMapperService mapperService)
+        public ProductService(IProductRepository productRepository, IMapperService mapperService, IReceiptRepository receiptRepository)
         {
             _productRepository = productRepository;
             _mapperService =  mapperService;
+            _receiptRepository = receiptRepository;
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
@@ -81,22 +84,13 @@ namespace TallerWeb.Src.Service.Implements
                     UnitPriceProduct = price,
                     QuantityPruchased = productBuyDto.QuantityStock,
                     PriceFinal = productBuyDto.QuantityStock * price,
-                    Date = DateTime.Today
+                    Date = DateTime.Today,
+                    IdUser = 1 ///CAMBIAR POR EL ID DEL USUARIO LOGUEADO
                 };
-                var receiptGenerate = await _productRepository.GenerateReceipt(receipt);
+                var receiptGenerate = await _receiptRepository.GenerateReceipt(receipt);
                 var mappedReceipt = _mapperService.ReceiptToReceiptDto(receiptGenerate);
                 return mappedReceipt;
         }
 
-        public async Task<IEnumerable<ReceiptDto>> GetReceipts()
-        {
-            var receipts = await _productRepository.GetReceipts();
-            var mappedReceipts = new List<ReceiptDto>();
-            for (int i = 0; i < receipts.Count(); i++){
-                var receiptDto = _mapperService.ReceiptToReceiptDto(receipts.ElementAt(i));
-                mappedReceipts.Add(receiptDto);
-            }
-            return mappedReceipts;
-        }
     }
 }

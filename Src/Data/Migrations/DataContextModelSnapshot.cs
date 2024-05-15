@@ -55,6 +55,9 @@ namespace TallerWeb.Src.Data.Migrations
                     b.Property<int>("IdProduct")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("IdUser")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("NameProduct")
                         .HasColumnType("TEXT");
 

@@ -34,13 +34,14 @@ namespace TallerWeb.Src.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    IdProduct = table.Column<int>(type: "INTEGER", nullable: false),
                     NameProduct = table.Column<string>(type: "TEXT", nullable: true),
                     TypeProduct = table.Column<string>(type: "TEXT", nullable: true),
                     UnitPriceProduct = table.Column<int>(type: "INTEGER", nullable: false),
                     QuantityPruchased = table.Column<int>(type: "INTEGER", nullable: false),
                     PriceFinal = table.Column<int>(type: "INTEGER", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IdProduct = table.Column<int>(type: "INTEGER", nullable: false),
+                    IdUser = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
