@@ -11,14 +11,14 @@ using TallerWeb.Src.Data;
 namespace TallerWeb.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240514202029_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20240518173439_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.16");
 
             modelBuilder.Entity("TallerWeb.Src.Models.Gender", b =>
                 {
@@ -122,6 +122,9 @@ namespace TallerWeb.Src.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("GenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")

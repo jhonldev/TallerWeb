@@ -61,6 +61,7 @@ namespace TallerWeb.Src.Service.Implements
             var salt = BCrypt.Net.BCrypt.GenerateSalt(12);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password, salt);
             mappedUser.Password = passwordHash;
+            
 
             var role =  await _roleRepository.GetRoleByName("Cliente");
 

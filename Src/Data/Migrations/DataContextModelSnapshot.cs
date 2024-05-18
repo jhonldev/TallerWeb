@@ -15,7 +15,7 @@ namespace TallerWeb.Src.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.16");
 
             modelBuilder.Entity("TallerWeb.Src.Models.Gender", b =>
                 {
@@ -119,6 +119,9 @@ namespace TallerWeb.Src.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("GenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")

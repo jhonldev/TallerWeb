@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using TallerWeb.Src.DTOs.User;
 using TallerWeb.Src.Service.Interfaces;
@@ -28,7 +25,7 @@ namespace TallerWeb.Src.Controllers
                 return BadRequest("Credenciales invalidas");
             }
 
-            return Ok("Usuario logueado correctamente");
+            return Ok(respuesta);
         }
 
         [HttpPost("register")]
