@@ -12,5 +12,6 @@ namespace TallerWeb.Src.Service.Interfaces
         public Task<bool> EditUser(int id, EditUserDto editUserDto);
         public Task<bool> DeleteUser(int id);
         public Task<bool> ChangePassword(int id, ChangePasswordDto changePasswordDto);
+        public Task<IEnumerable<UserDto>> FindUsers(string query);
     }
 }

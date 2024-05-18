@@ -18,28 +18,24 @@ namespace TallerWeb.Src.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetUsers()
+        [Authorize(Roles="Admin")]
+        public async Task<ActionResult> GetUsers([FromQuery] string query)
         {
-            var users = await _service.GetUsers();
+            var users = await _service.FindUsers(query);
             return Ok(users);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> EditUser(int id, EditUserDto editUserDto){
-            try
-            {
-                var user = await _service.EditUser(id, editUserDto);
-                if(!user){
-                    return NotFound();
-                }
-                return Ok();
+            
+            var user = await _service.EditUser(id, editUserDto);
+            if(!user){
+                return NotFound("El usuario no existe");
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok("Usuario editado correctamente");
 
         }
+
         [HttpPut("changePassword/{id}")]
         public async Task<ActionResult<User>> ChangePassword(int id, ChangePasswordDto changePasswordDto){
              var user = await _service.ChangePassword(id, changePasswordDto);
@@ -48,20 +44,15 @@ namespace TallerWeb.Src.Controllers
                 }
                 return Ok("Contraseña cambiada correctamente");
         }
-        [HttpDelete("{id}")]
+        [HttpPut("changeActivity/{id}")]
+        [Authorize(Roles="Admin")]
         public async Task<ActionResult<User>> DeleteUser(int id){
-            try
-            {
-                var user = await _service.DeleteUser(id);
-                if(!user){
-                    return NotFound("El usuario no existe");
-                }
-                return Ok("Usuario eliminado correctamente");
+            
+            var user = await _service.DeleteUser(id);
+            if(!user){
+                return NotFound("El usuario no existe");
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok("Usuario eliminado correctamente");
         }
     } 
 }

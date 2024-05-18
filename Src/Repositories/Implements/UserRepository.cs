@@ -41,7 +41,7 @@ namespace TallerWeb.Src.Repositories.Implements
             {
                 return false;
             }
-            _context.Users.Remove(existingUser);
+            existingUser.IsActive = !existingUser.IsActive;
             await _context.SaveChangesAsync();
             return true;
         }
@@ -97,6 +97,17 @@ namespace TallerWeb.Src.Repositories.Implements
                 return false;
             }
             return true;
+        }
+
+        public async Task<IEnumerable<User>> FindUsers(string query)
+        {
+            var users = await _context.Users.Where(u => u.Nombre.Contains(query) || 
+                                                    u.Id.ToString().Contains(query) ||
+                                                    u.FechaNacimiento.ToString().Contains(query) ||
+                                                    u.GenderId.ToString().Contains(query) ||
+                                                    u.Rut.Contains(query) ||
+                                                    u.Email.Contains(query)).ToListAsync();
+            return users;
         }
     }
 }
