@@ -17,16 +17,35 @@ namespace TallerWeb.Src.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.16");
 
+            modelBuilder.Entity("TallerWeb.Src.Models.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gender");
+                });
+
             modelBuilder.Entity("TallerWeb.Src.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("IdImage")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Image")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Price")
@@ -36,6 +55,7 @@ namespace TallerWeb.Src.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -93,6 +113,20 @@ namespace TallerWeb.Src.Data.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("TallerWeb.Src.Models.TypeProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NameTypeProduct")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeProducts");
+                });
+
             modelBuilder.Entity("TallerWeb.Src.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +136,12 @@ namespace TallerWeb.Src.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GenderId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -114,7 +154,13 @@ namespace TallerWeb.Src.Data.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Rut")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("GenderId");
 
                     b.HasIndex("RoleId");
 
@@ -123,11 +169,19 @@ namespace TallerWeb.Src.Data.Migrations
 
             modelBuilder.Entity("TallerWeb.Src.Models.User", b =>
                 {
+                    b.HasOne("TallerWeb.Src.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TallerWeb.Src.Models.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Gender");
 
                     b.Navigation("Role");
                 });

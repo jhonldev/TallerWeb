@@ -1,5 +1,4 @@
 using TallerWeb.Src.DTOs.Receipt;
-using TallerWeb.Src.Models;
 using TallerWeb.Src.Service.Interfaces;
 using TallerWeb.Src.Repositories.Interfaces;
 

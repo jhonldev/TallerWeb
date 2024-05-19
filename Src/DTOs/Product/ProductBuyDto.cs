@@ -8,7 +8,6 @@ namespace TallerWeb.Src.DTOs.Product
                 public string ? Name { get; set; }
 
                 [Required]
-                [RegularExpression("^(Tecnología|Electrohogar|Juguetería|Ropa|Muebles|Comida|Libros)$", ErrorMessage = "El tipo de producto es inválido")]
                 public string ? Type { get; set; }
 
                 [Required]
