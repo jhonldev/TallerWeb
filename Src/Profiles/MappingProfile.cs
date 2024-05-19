@@ -2,6 +2,7 @@ using TallerWeb.Src.Models;
 using AutoMapper;
 using TallerWeb.Src.DTOs.Product;
 using TallerWeb.Src.DTOs.Receipt;
+using TallerWeb.Src.DTOs.User;
 
 namespace ayudantia_IDWM.Src.Profiles
 {
@@ -13,6 +14,9 @@ namespace ayudantia_IDWM.Src.Profiles
             CreateMap<Product, ProductDto>();
             CreateMap<Receipt, ReceiptDto>();
             CreateMap<ReceiptDto, Receipt>();
+
+            CreateMap<RegisterUserDto, User>();
+            CreateMap<User,UserDto>();
         }
     }
 }

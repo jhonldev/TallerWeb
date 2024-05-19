@@ -26,20 +26,26 @@ namespace TallerWeb.Src.Repositories.Implements
         /// Obtiene todos los productos.
         /// </summary>
         /// <returns>Una colección de productos.</returns>
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<Product>> GetProducts(string query)
         {
-            var products = await _context.Products.ToListAsync();
+            if(query == ""){
+                return await _context.Products.ToListAsync();
+            }
+            var products = await _context.Products.Where(u => u.Name.Contains(query) || u.Type.Contains(query) || u.Price.ToString().Contains(query) || u.QuantityStock.ToString().Contains(query)).ToListAsync();
             return products;
         }
 
         public async Task<IEnumerable<Product>> GetProductsAvailable()
         {
+
             var products = await _context.Products.Where(x => x.QuantityStock > 0).ToListAsync();
             return products;
         }
 
-        public async Task<bool> CreateProduct(Product product)
+        public async Task<bool> CreateProduct(Product product, string Image, string ImageId)
         {
+            product.Image = Image;
+            product.IdImage = ImageId;
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return true;
@@ -57,6 +63,7 @@ namespace TallerWeb.Src.Repositories.Implements
         public async Task<bool> UpdateProduct(int id, ProductUpdateDto productUpdateDto)
         {
             var existingProduct = await _context.Products.FindAsync(id);
+
             if (existingProduct == null){
                 return false;
             }
@@ -86,6 +93,7 @@ namespace TallerWeb.Src.Repositories.Implements
         public async Task<int> BuyProduct(ProductBuyDto productBuyDto)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == productBuyDto.Name && x.Type == productBuyDto.Type);
+
             if(product == null || product.QuantityStock < productBuyDto.QuantityStock){
                 return -1;
             }
@@ -94,6 +102,16 @@ namespace TallerWeb.Src.Repositories.Implements
             _context.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return product.Id;
+        }
+
+        public async Task<bool> GetTypeProduct(string type)
+        {
+            var typeProduct = await _context.TypeProducts.FirstOrDefaultAsync(x => x.NameTypeProduct == type);
+
+            if(typeProduct == null){
+                return false;
+            }
+            return true;
         }
 
         public async Task<int> GetStock(string name, string type)

@@ -1,5 +1,3 @@
-using Bogus.DataSets;
-
 namespace TallerWeb.Src.Models
 {
     public class Receipt
@@ -13,7 +11,7 @@ namespace TallerWeb.Src.Models
         public DateTime Date { get; set; }
 
 
-           //Relaciones
+        //Relaciones
         public int IdProduct { get; set; }
         public int IdUser { get; set;}
 

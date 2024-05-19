@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "e6d5e393-1282-4329-b141-27c73f1f6e84",
+		"name": "TallerWeb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33696564",
+		"_collection_link": "https://tallerweb.postman.co/workspace/TallerWeb-Workspace~b3834c5a-c153-483a-842d-f3885411f951/collection/33696564-e6d5e393-1282-4329-b141-27c73f1f6e84?action=share&source=collection_link&creator=33696564"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Obtener Usuarios",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6ImlnbmFjaW8ubWFuY2lsbGFAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MTYxNjA4MzB9.XavbyktsU5Kzw0nZZnJvablLo4Ui1tLtshG8HqLKUhw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/User/findUsers/?query=Mela",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"User",
+										"findUsers",
+										""
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Mela"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Boletas",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MDY5MzYyfQ.-nXZJQvvIxpaweHvtMhZsy3MjTDVWFxXe0E9_T5Fy90",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5046/api/receipt",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"receipt"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deshabilitar Usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEwIiwiRW1haWwiOiIgbWFydGluLm1vcmFsZXNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQ2xpZW50ZSIsImV4cCI6MTcxNjE2MDczOH0.xfoRr1RaI3EWLAa_Wu7BwCqt3nMj-gDWWiguepe3xJw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/User/changeActivity/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"User",
+										"changeActivity",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Visualizar Usuarios",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6ImlnbmFjaW8ubWFuY2lsbGFAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MTYxNjA4MzB9.XavbyktsU5Kzw0nZZnJvablLo4Ui1tLtshG8HqLKUhw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/User/getUsers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"User",
+										"getUsers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cliente",
+					"item": [
+						{
+							"name": "Boletas usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MTQxODIxfQ.LAVZh4PsvP_MnXnlyI0ZjD4PIWmmgcZf4MrcBkfspec",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/receipt/client",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"receipt",
+										"client"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cambiar contraseña",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MTQxODIxfQ.LAVZh4PsvP_MnXnlyI0ZjD4PIWmmgcZf4MrcBkfspec",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ActualPassword\": \"Ab05wkf\",\r\n    \"NewPassword\":\"Pola123456\",\r\n    \"ConfirmPassword\" : \"Pola123456\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5046/api/User/changePassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5046",
+							"path": [
+								"api",
+								"User",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEwIiwiRW1haWwiOiIgbWFydGluLm1vcmFsZXNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQ2xpZW50ZSIsImV4cCI6MTcxNjE2MDczOH0.xfoRr1RaI3EWLAa_Wu7BwCqt3nMj-gDWWiguepe3xJw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"David Garrido\",\r\n    \"fechaNacimiento\": \"1993-02-19\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5046/api/User/editUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5046",
+							"path": [
+								"api",
+								"User",
+								"editUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rut\": \"20016699-4\",\r\n    \"nombre\": \"Martin Morales\",\r\n    \"fechaNacimiento\": \"2003-02-25\",\r\n    \"email\": \" martin.morales@gmail.com\",\r\n    \"genderID\": 1,\r\n    \"password\": \"Abc38492\",\r\n    \"confirmPassword\": \"Abc38492\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5046/api/Auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5046",
+							"path": [
+								"api",
+								"Auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar Sesión",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ignacio.mancilla@gmail.com\",\r\n    \"password\": \"P4ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5046/api/Auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5046",
+							"path": [
+								"api",
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Name",
+											"value": "NFT Dragón",
+											"type": "text"
+										},
+										{
+											"key": "Type",
+											"value": "Tecnología",
+											"type": "text"
+										},
+										{
+											"key": "Price",
+											"value": "8000000",
+											"type": "text"
+										},
+										{
+											"key": "QuantityStock",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "postman-cloud:///1ef1623c-e07d-4160-b188-32496986fb8f"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5046/api/product/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Productos",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5046/api/product?query=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Producto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Lechugacona\",\r\n    \"Type\": \"Comida\",\r\n    \"Price\" : 10,\r\n    \"QuantityStock\" : 50,\r\n    \"Image\" : \"Un7HastaElMomento\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5046/api/product/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Producto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/product/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cliente",
+					"item": [
+						{
+							"name": "Productos disponibles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MTQxODIxfQ.LAVZh4PsvP_MnXnlyI0ZjD4PIWmmgcZf4MrcBkfspec",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5046/api/product/available",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product",
+										"available"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Comprar productos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MTQxODIxfQ.LAVZh4PsvP_MnXnlyI0ZjD4PIWmmgcZf4MrcBkfspec",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Lechugacona\",\r\n    \"Type\": \"Comida\",\r\n    \"QuantityStock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5046/api/product/buy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5046",
+									"path": [
+										"api",
+										"product",
+										"buy"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjEiLCJFbWFpbCI6Impob24ubG9wZXpAYWx1bW5vcy51Y24uY2wiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnRlIiwiZXhwIjoxNzE2MDY3NzM0fQ.tTz6QzRVWTdcDIsOQVVqXTjC1cy2hB2magHZC3FKV90",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
