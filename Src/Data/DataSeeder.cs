@@ -45,7 +45,7 @@ namespace TallerWeb.Src.Data
                         Email = "ignacio.mancilla@gmail.com",
                         Password = BCrypt.Net.BCrypt.HashPassword("P4ssw0rd"),
                         RoleId = 1,
-                        GenderId = 2,
+                        GenderId = 1,
                         Rut = "20416699-4",
                         IsActive = true
                         
@@ -59,7 +59,7 @@ namespace TallerWeb.Src.Data
                         Email = "pablo.perez@gmail.com",
                         Password = BCrypt.Net.BCrypt.HashPassword("Ab05wkf"),
                         RoleId = 2,
-                        GenderId = 2,
+                        GenderId = 1,
                         Rut = "15936652-k",
                         IsActive = true
                         
@@ -73,7 +73,7 @@ namespace TallerWeb.Src.Data
                         Email = "marcos.alberto@gmail.com",
                         Password = BCrypt.Net.BCrypt.HashPassword("Albertito1"),
                         RoleId = 2,
-                        GenderId = 2,
+                        GenderId = 1,
                         Rut = "20743101-k",
                         IsActive = true
                         
@@ -86,7 +86,7 @@ namespace TallerWeb.Src.Data
                         Email = "melany.martinez@gmail.com",
                         Password = BCrypt.Net.BCrypt.HashPassword("DotnetLoMejor24"),
                         RoleId = 2,
-                        GenderId = 3,
+                        GenderId = 2,
                         Rut = "21019691-1",
                         IsActive = true
                         

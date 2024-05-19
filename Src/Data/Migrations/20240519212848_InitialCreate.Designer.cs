@@ -11,7 +11,7 @@ using TallerWeb.Src.Data;
 namespace TallerWeb.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240518173439_InitialCreate")]
+    [Migration("20240519212848_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

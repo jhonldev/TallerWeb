@@ -1,8 +1,10 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TallerWeb.Src.DTOs.User;
 using TallerWeb.Src.Models;
 using TallerWeb.Src.Service.Interfaces;
+
 
 namespace TallerWeb.Src.Controllers
 {
@@ -24,12 +26,25 @@ namespace TallerWeb.Src.Controllers
         /// <returns>Una acción que resulta en una respuesta HTTP. Si la operación es exitosa, la respuesta será Ok (200) 
         /// e incluirá una lista de usuarios. Si ocurre un error, la respuesta será un código de error 500 (Internal Server Error).</returns>
 
-        [HttpGet]
+        [HttpGet("findUsers")]
         [Authorize(Roles="Admin")]
-        public async Task<ActionResult> GetUsers([FromQuery] string query)
+        public async Task<ActionResult> FindUsers([FromQuery] string query)
         {
             var users = await _service.FindUsers(query);
             return Ok(users);
+        }
+
+        /// <summary>
+        /// Obtiene todos los usuarios
+        /// </summary>
+        /// <returns>Una acción que resulta en una respuesta HTTP. Si la operación es exitosa, 
+        /// la respuesta será Ok (200) y contendrá los datos de todos los usuarios</returns>
+        [HttpGet("getUsers")]
+        [Authorize(Roles="Admin")]
+        public async Task<ActionResult<User>> GetUser()
+        {
+            var user = await _service.GetUsers();
+            return Ok(user);
         }
         /// <summary>
         /// Edita los datos del usuario como el nombre, fecha de nacimiento y/o género.
@@ -39,13 +54,17 @@ namespace TallerWeb.Src.Controllers
         /// <returns>Una acción que resulta en una respuesta HTTP. Si la operación es exitosa, la respuesta será Ok (200) 
         /// con un mensaje de éxito. Si el usuario no existe, la respuesta será NotFound (404) </returns>
   
-        [HttpPut("editUser/{id}")]
-        public async Task<ActionResult<User>> EditUser(int id, EditUserDto editUserDto){
-            
-            var user = await _service.EditUser(id, editUserDto);
-            if(!user){
+        [HttpPut("editUser")]
+        [Authorize]
+        public async Task<ActionResult<User>> EditUser(EditUserDto editUserDto){
+            var userId = User.FindFirstValue("Id");
+
+            if(userId == null){
                 return NotFound("El usuario no existe");
             }
+            int id = int.Parse(userId);
+
+            await _service.EditUser(id, editUserDto);
             return Ok("Usuario editado correctamente");
 
         }
@@ -58,13 +77,17 @@ namespace TallerWeb.Src.Controllers
         /// <returns>Una acción que resulta en una respuesta HTTP. Si la operación es exitosa, la respuesta será Ok (200) 
         /// con un mensaje de éxito. Si ocurre un problema, la respuesta será BadRequest (400) </returns>
     
-        [HttpPut("changePassword/{id}")]
-        public async Task<ActionResult<User>> ChangePassword(int id, ChangePasswordDto changePasswordDto){
-             var user = await _service.ChangePassword(id, changePasswordDto);
-                if(!user){
-                    return BadRequest("Hubo un problema en el sistema");
-                }
-                return Ok("Contraseña cambiada correctamente");
+        [HttpPut("changePassword")]
+        [Authorize]
+        public async Task<ActionResult<User>> ChangePassword(ChangePasswordDto changePasswordDto){
+            var userId = User.FindFirstValue("Id");
+    
+            if(userId == null){
+                return BadRequest("Hubo un problema en el sistema");
+            }
+            int id = int.Parse(userId);
+            await _service.ChangePassword(id, changePasswordDto);
+            return Ok("Contraseña cambiada correctamente");
         }
 
         /// <summary>
@@ -82,7 +105,7 @@ namespace TallerWeb.Src.Controllers
             if(!user){
                 return NotFound("El usuario no existe");
             }
-            return Ok("Usuario eliminado correctamente");
+            return Ok("Actividad del usuario cambiada correctamente");
         }
     } 
 }

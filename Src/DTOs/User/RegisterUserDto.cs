@@ -25,6 +25,7 @@ namespace TallerWeb.Src.DTOs.User
 
         [Required(ErrorMessage = "El campo Email es obligatorio")]
         [EmailAddress(ErrorMessage = "El Email no tiene formato valido")]
+        [RegularExpression(@"^.+@.+\.(com|cl|ucn\.cl)$", ErrorMessage = "El Email debe terminar en .com, .cl o .ucn.cl")]
         public string Email {get; set;} = string.Empty;
 
         [Required(ErrorMessage = "El campo Genero es obligatorio")]
