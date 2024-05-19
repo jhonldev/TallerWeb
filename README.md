@@ -39,6 +39,10 @@ Authentication Bearer
 ```
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 7.0.16
 ```
+Cloudinary 
+```
+dotnet add package CloudinaryDotNet --version 1.26.2
+```
 
 ## Integrantes
 - Jhon Lopez
