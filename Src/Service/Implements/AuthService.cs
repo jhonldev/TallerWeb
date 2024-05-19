@@ -35,7 +35,7 @@ namespace TallerWeb.Src.Service.Implements
         {
             string mensaje = "Credenciales invalidas";
             var user = await _userRepository.GetUserByEmail(loginUserDto.Email.ToString());
-            if (user is null)
+            if (user is null || user.IsActive == false)
             {
                 return mensaje;
             }

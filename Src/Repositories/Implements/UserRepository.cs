@@ -49,10 +49,11 @@ namespace TallerWeb.Src.Repositories.Implements
         async public Task<bool> EditUser(int id, EditUserDto editUserDto)
         {
             var existingUser = await _context.Users.FindAsync(id);
-            if (existingUser == null)
+            if (existingUser == null || existingUser.IsActive == false)
             {
                 return false;
             }
+            
             existingUser.Nombre = editUserDto.Nombre ?? existingUser.Nombre;
             if(editUserDto.FechaNacimiento != DateTime.MinValue)
             {
