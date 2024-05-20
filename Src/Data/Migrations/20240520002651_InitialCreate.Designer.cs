@@ -11,7 +11,7 @@ using TallerWeb.Src.Data;
 namespace TallerWeb.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240519221546_InitialCreate")]
+    [Migration("20240520002651_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -144,6 +144,9 @@ namespace TallerWeb.Src.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("GenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")

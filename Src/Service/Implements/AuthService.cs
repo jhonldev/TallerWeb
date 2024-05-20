@@ -1,6 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using BCrypt.Net;
 using Microsoft.IdentityModel.Tokens;
 using TallerWeb.Src.DTOs.User;
 using TallerWeb.Src.Models;
@@ -28,14 +33,15 @@ namespace TallerWeb.Src.Service.Implements
 
         public async Task<string> LoginUser(LoginUserDto loginUserDto)
         {
+            string mensaje = "Credenciales invalidas";
             var user = await _userRepository.GetUserByEmail(loginUserDto.Email.ToString());
-            if (user is null)
+            if (user is null || user.IsActive == false)
             {
-                return "Credenciales Invalidas";
+                return mensaje;
             }
 
             var resultado = BCrypt.Net.BCrypt.Verify(loginUserDto.Password, user.Password);
-            if(!resultado){return "Credenciales Invalidas";}
+            if(!resultado){return mensaje;}
             
             
             var token = GenerateToken(user);
@@ -45,9 +51,7 @@ namespace TallerWeb.Src.Service.Implements
 
         public async Task<string> RegisterUser(RegisterUserDto registerUserDto)
         {
-            if (registerUserDto.Rut != null){
-                registerUserDto.Rut = registerUserDto.Rut.ToUpper();
-            }
+            registerUserDto.Rut = registerUserDto.Rut.ToUpper();
             var mappedUser =  _mapperService.RegisterUserDtoToUser(registerUserDto);
             if (_userRepository.VerifyUserByEmail(mappedUser.Email).Result)
             {
@@ -57,6 +61,7 @@ namespace TallerWeb.Src.Service.Implements
             var salt = BCrypt.Net.BCrypt.GenerateSalt(12);
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password, salt);
             mappedUser.Password = passwordHash;
+            
 
             var role =  await _roleRepository.GetRoleByName("Cliente");
 

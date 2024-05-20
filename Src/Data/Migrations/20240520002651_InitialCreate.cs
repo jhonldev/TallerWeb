@@ -99,6 +99,7 @@ namespace TallerWeb.Src.Data.Migrations
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     RoleId = table.Column<int>(type: "INTEGER", nullable: false),
                     GenderId = table.Column<int>(type: "INTEGER", nullable: false)
                 },

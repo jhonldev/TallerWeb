@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using TallerWeb.Src.DTOs.User;
 using TallerWeb.Src.Service.Interfaces;
@@ -19,18 +16,30 @@ namespace TallerWeb.Src.Controllers
             _authService = authService;
         }
         
+        /// <summary>
+        /// Autentica a un usuario y devuelve un token de acceso.
+        /// </summary>
+        /// <param name="loginUserDto">Un objeto que contiene las credenciales del usuario (correo del ususario y contraseña)</param>
+        /// <returns>Una acción que resulta en una respuesta HTTP. Si la operacion es exitosa la respuesta será OK(200)
+        /// y tendrá el token de acceso. Si las credenciales son invalidas la respuesta será BadRequest (400)
+        /// con un mensaje de error </returns>
         [HttpPost("login")]
         public async Task<ActionResult<string>> LoginUser(LoginUserDto loginUserDto)
         {
             var respuesta = await _authService.LoginUser(loginUserDto);
-            if (respuesta == "")
+            if (respuesta is null)
             {
-                return BadRequest(respuesta);
+                return BadRequest("Credenciales invalidas");
             }
 
             return Ok(respuesta);
         }
-
+        /// <summary>
+        /// Registra un nuevo ususario y debuelve un token de acceso
+        /// </summary>
+        /// <param name="registerUserDto">Un objeto que contiene los datos del nuevo usuario </param>
+        /// <returns>Una acción que resulta en una respuesta HTTP. Si la operación es exitosa, la respuesta será OK (200)
+        /// y contenrá el token de acceso. Si el registro falla, la respuesta será BadRequest (400)</returns>
         [HttpPost("register")]
         public async Task<ActionResult<string>> RegisterUser(RegisterUserDto registerUserDto)
         {
@@ -42,15 +51,6 @@ namespace TallerWeb.Src.Controllers
             }
             return Ok(respuesta);
         }
-        [HttpPost("logout")]
-        public ActionResult<string> LogoutUser()
-        {
-            var userId = User.Claims.FirstOrDefault(u => u.Type == "Id")?.Value;
-            if (userId is null)
-            {
-                return BadRequest("Usuario no logueado");
-            }
-            return Ok("Usuario deslogueado correctamente");
-        }
+        
     }
 }

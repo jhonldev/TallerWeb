@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using TallerWeb.Src.DTOs.User;
 using TallerWeb.Src.Repositories.Interfaces;
@@ -38,9 +42,10 @@ namespace TallerWeb.Src.Service.Implements
             
         }
 
-        public Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            var result = await _userRepository.DeleteUser(id);
+            return result;
         }
 
         public async Task<bool> EditUser(int id, EditUserDto editUserDto)
@@ -50,18 +55,17 @@ namespace TallerWeb.Src.Service.Implements
             {
                 return false;
             }
-            existingUser.Nombre = editUserDto.Nombre ?? existingUser.Nombre;
-            if(editUserDto.FechaNacimiento != DateTime.MinValue)
-            {
-                existingUser.FechaNacimiento = editUserDto.FechaNacimiento;
-            }
-            if(editUserDto.GenderId != 0)
-            {
-                existingUser.GenderId = editUserDto.GenderId;
-            }
+    
             await _userRepository.EditUser(id, editUserDto);
             return true;
         }
+
+        public async Task<IEnumerable<UserDto>> FindUsers(string query)
+        {
+            var users = await _userRepository.FindUsers(query);
+            var userDtos = users.Select(u => _mapper.Map<UserDto>(u));
+            return userDtos;
+}
 
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
@@ -73,6 +77,8 @@ namespace TallerWeb.Src.Service.Implements
                 mappedUsers.Add(userDto);
             }
             return mappedUsers;
-
         }
-}   }  
+    }
+
+        
+}     

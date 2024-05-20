@@ -11,12 +11,12 @@ namespace TallerWeb.Src.DTOs.User
     {
         [Required(ErrorMessage = "El campo Rut es obligatorio")]
         [RutValidation(ErrorMessage = "El Rut no es correcto")]
-        public string ? Rut {get; set; }
+        public string Rut {get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo Nombre es obligatorio")]
         [MinLength(8, ErrorMessage ="El nombre debe tener al menos 8 caracteres.")]
         [MaxLength(255, ErrorMessage = "El nombre debe tener a lo más 255 caracteres.")]
-        public string ? Nombre {get; set; } 
+        public string Nombre {get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio")]
         [DataType(DataType.Date)]
@@ -25,7 +25,8 @@ namespace TallerWeb.Src.DTOs.User
 
         [Required(ErrorMessage = "El campo Email es obligatorio")]
         [EmailAddress(ErrorMessage = "El Email no tiene formato valido")]
-        public string ? Email {get; set;}
+        [RegularExpression(@"^.+@.+\.(com|cl|ucn\.cl)$", ErrorMessage = "El Email debe terminar en .com, .cl o .ucn.cl")]
+        public string Email {get; set;} = string.Empty;
 
         [Required(ErrorMessage = "El campo Genero es obligatorio")]
         public int GenderId {get; set; }
@@ -34,10 +35,10 @@ namespace TallerWeb.Src.DTOs.User
         [RegularExpression(@"^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$", ErrorMessage = "La Contraseña debe ser alfanumérica.")]
         [MinLength(8, ErrorMessage = "La contraseña debe tener al menos 8 caracteres.")]
         [MaxLength(20, ErrorMessage = "La contraseña debe tener a lo más 20 caracteres.")]
-        public string ? Password {get; set;}
+        public string Password {get; set;} = string.Empty;
 
         [Required(ErrorMessage = "El campo Confirmar Contraseña es obligatorio")]
         [Compare("Password", ErrorMessage = "Las contraseñas no coinciden.")]
-        public string ? ConfirmPassword {get; set;}
+        public string ConfirmPassword {get; set;} = string.Empty;
     }
 }

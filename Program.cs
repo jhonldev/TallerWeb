@@ -1,5 +1,5 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using TallerWeb.Src.Data;
 using TallerWeb.Src.Repositories.Implements;
 using TallerWeb.Src.Repositories.Interfaces;
@@ -7,7 +7,6 @@ using TallerWeb.Src.Service.Implements;
 using TallerWeb.Src.Service.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using TallerWeb.Src.Helpers;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,17 +39,14 @@ builder.Services.AddScoped<IReceiptRepository, ReceiptRepository>();
 builder.Services.AddScoped<IReceiptService, ReceiptService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 
 var app = builder.Build();
-
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 
 using (var scope = app.Services.CreateScope())
 {
@@ -68,6 +64,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

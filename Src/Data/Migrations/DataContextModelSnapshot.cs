@@ -143,6 +143,9 @@ namespace TallerWeb.Src.Data.Migrations
                     b.Property<int>("GenderId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("TEXT");

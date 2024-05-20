@@ -34,7 +34,7 @@ namespace TallerWeb.Src.Data
                     );
                 }
                 context.SaveChanges();
-                
+
                 if(!context.TypeProducts.Any()){
                     context.TypeProducts.AddRange(
                         new TypeProduct { NameTypeProduct = "Tecnología"},
@@ -48,7 +48,71 @@ namespace TallerWeb.Src.Data
                 }
 
                 context.SaveChanges();
+
                 
+                if(!context.Users.Any())
+                {
+                    
+                    var user = new User {
+                         
+                        Nombre = "Ignacio Mancilla",
+                        FechaNacimiento = new DateTime(2000, 10, 25),
+                        Email = "ignacio.mancilla@gmail.com",
+                        Password = BCrypt.Net.BCrypt.HashPassword("P4ssw0rd"),
+                        RoleId = 1,
+                        GenderId = 1,
+                        Rut = "20416699-4",
+                        IsActive = true
+                        
+                    };
+                    context.Users.Add(user);
+
+                    var user2 = new User {
+                         
+                        Nombre = "Pablo Perez",
+                        FechaNacimiento = new DateTime(1982, 03, 15),
+                        Email = "pablo.perez@gmail.com",
+                        Password = BCrypt.Net.BCrypt.HashPassword("Ab05wkf"),
+                        RoleId = 2,
+                        GenderId = 1,
+                        Rut = "15936652-k",
+                        IsActive = true
+                        
+                    };
+                    context.Users.Add(user2);
+                    
+                    var user3 = new User {
+                         
+                        Nombre = "Marcos Alberto",
+                        FechaNacimiento = new DateTime(2000, 10, 26),
+                        Email = "marcos.alberto@gmail.com",
+                        Password = BCrypt.Net.BCrypt.HashPassword("Albertito1"),
+                        RoleId = 2,
+                        GenderId = 1,
+                        Rut = "20743101-k",
+                        IsActive = true
+                        
+                    };
+                    context.Users.Add(user3);
+                    var user4 = new User {
+                         
+                        Nombre = "Melany Martinez",
+                        FechaNacimiento = new DateTime(2002, 12, 01),
+                        Email = "melany.martinez@gmail.com",
+                        Password = BCrypt.Net.BCrypt.HashPassword("DotnetLoMejor24"),
+                        RoleId = 2,
+                        GenderId = 2,
+                        Rut = "21019691-1",
+                        IsActive = true
+                        
+                    };
+                    context.Users.Add(user4);
+
+                    
+                }
+
+                context.SaveChanges();
+
                 if(!context.Products.Any()){
                     var product = new Product {
 

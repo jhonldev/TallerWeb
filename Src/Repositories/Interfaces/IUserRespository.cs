@@ -13,5 +13,6 @@ namespace TallerWeb.Src.Repositories.Interfaces
         Task<User?> GetUserById(int id);
         Task ChangePassword(int id, ChangePasswordDto changePasswordDto);
         Task <bool> DeleteUser(int id);
+        Task<IEnumerable<User>> FindUsers(string query);
     }
 }                   
